@@ -12,13 +12,22 @@
    * https://www.postman.com/downloads/
 
 ## 初期設定
+1. `composer install`で依存ライブラリをインストールする
 1. database/database.sqlite.example を `database.sqlite`にリネームする
-2. .env.example を `.env`にリネームする
-3. training-laravel の配下で次のコマンドを入力する
+1. .env.example を `.env`にリネームする
+1. training-laravel の配下で次のコマンドを入力する
     1. sqliteにplayersテーブルを作成する
         * `php artisan migrate`
-    2. playerテーブルにダミーデータを登録する
+        * PDOException::("could not find driver")のエラーが発生したら。
+          * `php --ini` コマンドでphp.iniファイルの場所を特定する
+          * ";extension=pdo_sqlite"となっている行でセミコロンを外してセーブする
+     1. playerテーブルにダミーデータを登録する
         * `php artisan db:seed --class=PlayerSeeder`
 
 ## Postmanの初期設定
 1. training-laravel.postman_collection.json をPostmanにインポートする
+
+## ゲームサーバー起動
+```
+php artisan serve
+```
