@@ -6,6 +6,7 @@ use App\Http\Resources\PlayerResource;
 use App\Models\Player;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class PlayersController extends Controller
 {
@@ -16,28 +17,10 @@ class PlayersController extends Controller
      */
     public function index()
     {
-        return new Response(Player::all());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return new Response(
+            Player::query()->
+            select(['id', 'name'])->
+            get());
     }
 
     /**
@@ -48,16 +31,16 @@ class PlayersController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function store(Request $request)
     {
         //
     }
@@ -81,6 +64,27 @@ class PlayersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
         //
     }
