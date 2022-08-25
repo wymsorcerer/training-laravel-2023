@@ -14,4 +14,8 @@ use App\Http\Controllers\PlayersController;
 |
 */
 
-Route::resource('players', PlayersController::class);
+Route::get('/players', [PlayersController::class, 'index']);
+Route::get('/players/{id}', [PlayersController::class, 'show']);
+Route::post('/players', [PlayersController::class, 'store']);
+Route::put('/players/{id}', [PlayersController::class, 'update']);
+Route::delete('/players/{id}', [PlayersController::class, 'destroy']);
