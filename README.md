@@ -1,31 +1,42 @@
 # Laravel研修
 
 ## 用意する物
-1. PHP 7.4
+1. PHP 7.4, composer
    * Windowsの場合
      * https://windows.php.net/download#php-7.4
+     * https://getcomposer.org/doc/00-intro.md#using-the-installer
    * Macの場合
      1. brew install php@7.4
-     2. brew link php@7.4
-2. Postman
+     1. brew link php@7.4
+     1. brew install composer
+1. Postman
    * APIクライアントに使用する
    * https://www.postman.com/downloads/
+   * 利用するために、postmanの無料ユーザー登録をする。
+1. DBクライアント
+   * Windowsの場合
+     * HeidiSQL https://www.heidisql.com/download.php
+   * Macの場合
+     * SequelPro https://sequelpro.com/
 
 ## 初期設定
-1. `composer install`で依存ライブラリをインストールする
-1. database/database.sqlite.example を `database.sqlite`にリネームする
-1. .env.example を `.env`にリネームする
+1. 次のコマンドを実行して依存ライブラリをインストールする
+    ```
+    composer update
+    composer install
+    ```
+1. `database/database.sqlite.example` を `database.sqlite`にリネームする
+1. `.env.example` を `.env`にリネームする
+1. `php --ini` コマンドで表示される `php.ini` ファイルをテキストエディタで編集する
+    * `;extension=pdo_sqlite` の行で探して、セミコロンを外してセーブする
 1. training-laravel の配下で次のコマンドを入力する
     1. sqliteにplayersテーブルを作成する
         * `php artisan migrate`
-        * PDOException::("could not find driver")のエラーが発生したら。
-          * `php --ini` コマンドでphp.iniファイルの場所を特定する
-          * ";extension=pdo_sqlite"となっている行でセミコロンを外してセーブする
-     1. playerテーブルにダミーデータを登録する
-        * `php artisan db:seed --class=PlayerSeeder`
+    1. playerテーブルにダミーデータを登録する
+        * `php artisan db:seed`
 
 ## Postmanの初期設定
-1. training-laravel.postman_collection.json をPostmanにインポートする
+1. `training-laravel.postman_collection.json` をPostmanにインポートする
 
 ## ゲームサーバー起動
 ```
