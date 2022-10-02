@@ -32,8 +32,11 @@
 1. training-laravel の配下で次のコマンドを入力する
     1. sqliteにplayersテーブルを作成する
         * `php artisan migrate`
-    1. playerテーブルにダミーデータを登録する
+    1. DBにダミーデータを登録する
         * `php artisan db:seed`
+### 小ワザ
+* 既存のテーブルを作り直して、データも同時に投入する。
+    * `php artisan migrate:refresh --seed`
 
 ## Postmanの初期設定
 1. `training-laravel.postman_collection.json` をPostmanにインポートする
@@ -42,3 +45,9 @@
 ```
 php artisan serve
 ```
+
+ゲームサーバーが起動したら、Postmanを起動してsendボタンでゲームサーバーへリクエストを投げてみる。
+
+レスポンスとしてプレイヤー情報が返ってきたらOK。
+
+![img.png](postman.png)
