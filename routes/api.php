@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\PlayerItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlayersController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,3 +21,8 @@ Route::get('/players/{id}', [PlayersController::class, 'show']);
 Route::post('/players', [PlayersController::class, 'store']);
 Route::put('/players/{id}', [PlayersController::class, 'update']);
 Route::delete('/players/{id}', [PlayersController::class, 'destroy']);
+
+Route::get('/players/items/{id}', [PlayerItemController::class, 'itemList']);
+Route::post('/players/{id}/addItem', [PlayerItemController::class, 'addItem']);
+Route::post('/players/{id}/useItem', [PlayerItemController::class, 'useItem']);
+Route::post('/players/{id}/purchaseItem', [PlayerItemController::class, 'purchaseItem']);

@@ -1,28 +1,30 @@
-# Laravel研修
+# Laravel 研修
 
 ## 用意する物
+
 1. PHP 7.4, composer
-   * Windowsの場合
-     * https://windows.php.net/download#php-7.4
-     * https://getcomposer.org/doc/00-intro.md#using-the-installer
-   * Macの場合
-     1. brew install php@7.4
-     1. brew link php@7.4
-     1. brew install composer
+    - Windows の場合
+        - https://windows.php.net/download#php-7.4
+        - https://getcomposer.org/doc/00-intro.md#using-the-installer
+    - Mac の場合
+        1. brew install php@7.4
+        1. brew link php@7.4
+        1. brew install composer
 1. Docker
-    * Dockerをインストールする
-    * https://www.docker.com/
+    - Docker をインストールする
+    - https://www.docker.com/
 1. Postman
-   * APIクライアントに使用する
-   * https://www.postman.com/downloads/
-   * 利用するために、postmanの無料ユーザー登録をする。
-1. DBクライアント
-   * Windowsの場合
-     * HeidiSQL https://www.heidisql.com/download.php
-   * Macの場合
-     * SequelPro https://sequelpro.com/
+    - API クライアントに使用する
+    - https://www.postman.com/downloads/
+    - 利用するために、postman の無料ユーザー登録をする。
+1. DB クライアント
+    - Windows の場合
+        - HeidiSQL https://www.heidisql.com/download.php
+    - Mac の場合
+        - SequelPro https://sequelpro.com/
 
 ## 初期設定
+
 1. `.env.example` を `.env`にリネームする
 1. `docker-compose up`を実行する
 1. コンテナの中に入る
@@ -34,26 +36,29 @@
     composer update
     composer install
     ```
-1. MySQL上にplayersテーブルを作成する
+1. MySQL 上に players テーブルを作成する
     ```
     php artisan migrate --seed
     ```
 1. `ctrl + d` を入力して、コンテナからログアウトする。
 
 ### 小ワザ
-* 既存のテーブルを作り直して、データも同時に投入する。
-    * `php artisan migrate:refresh --seed`
 
-## Postmanの初期設定
-1. `training-laravel.postman_collection.json` をPostmanにインポートする
+-   既存のテーブルを作り直して、データも同時に投入する。
+    -   `php artisan migrate:refresh --seed`
+
+## Postman の初期設定
+
+1. `training-laravel.postman_collection.json` を Postman にインポートする
 
 ## ゲームサーバー起動
+
 ```
 docker-compose up
 ```
 
-ゲームサーバーが起動したら、Postmanを起動してsendボタンでゲームサーバーへリクエストを投げてみる。
+ゲームサーバーが起動したら、Postman を起動して send ボタンでゲームサーバーへリクエストを投げてみる。
 
-レスポンスとしてプレイヤー情報が返ってきたらOK。
+レスポンスとしてプレイヤー情報が返ってきたら OK。
 
 ![img.png](postman.png)
