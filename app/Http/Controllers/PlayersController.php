@@ -7,6 +7,7 @@ use App\Models\Player;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\ErrorHandler\Debug;
 
 class PlayersController extends Controller
 {
@@ -18,9 +19,8 @@ class PlayersController extends Controller
     public function index()
     {
         return new Response(
-            Player::query()->
-            select(['id', 'name'])->
-            get());
+            Player::query()->select(['id', 'name'])->get()
+        );
     }
 
     /**
@@ -31,7 +31,16 @@ class PlayersController extends Controller
      */
     public function show($id)
     {
+        //$v = Player::where('id', $id)->get();
+        // $v = Player::count();
+        //Log::debug($v);
 
+        return new Response(
+            //Player::where('id', $id)->first()
+            Player::find($id)
+        );
+
+        //return response()->json(["id" => $id]);
     }
 
     /**
@@ -42,7 +51,14 @@ class PlayersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $v = [
+            "name" => $request["name"],
+            "hp" => $request["hp"],
+            "mp" => $request["mp"],
+            "money" => $request["money"]
+        ];
+
+        return new Response(["id" => Player::insertGetId($v)]);
     }
 
     /**
@@ -54,7 +70,26 @@ class PlayersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $v = array();
+        if ($request["name"]) {
+            $v = $v + array("name" => $request["name"]);
+        }
+        if ($request["hp"]) {
+            $v = $v + array("hp" => $request["hp"]);
+        }
+        if ($request["mp"]) {
+            $v = $v + array("mp" => $request["mp"]);
+        }
+        if ($request["money"]) {
+            $v = $v + array("money" => $request["money"]);
+        }
+
+        Player::where(['id' => $id])->update($v);
+
+
+        // return new Response(
+        //     Player::where(['id' => $id])->update($request->all())
+        // );
     }
 
     /**
@@ -65,7 +100,9 @@ class PlayersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return new Response(
+            Player::where(['id' => $id])->delete()
+        );
     }
 
     /**
